@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="malloc">
+      <UniqueIdentifier>{9927ced0-f8cd-46ff-95be-44dcc17213ce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LuaObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaState.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaObjectImpl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaException.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="malloc\dlmalloc.h">
+      <Filter>malloc</Filter>
+    </ClInclude>
+    <ClInclude Include="MemPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaStateOwner.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaCommon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaClass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaBind.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Luaobj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LuaObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaState.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaObjectImpl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaTable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaFunction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="malloc\dlmalloc.c">
+      <Filter>malloc</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaStateOwner.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaBind.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

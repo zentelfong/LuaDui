@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7E37119D-BD50-4EB9-990F-897D199E0D1A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>LuaDui</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="LuaDui.ico" />
+    <None Include="ReadMe.txt" />
+    <None Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\DuiLib\Markup.h" />
+    <ClInclude Include="..\DuiLib\UIApplication.h" />
+    <ClInclude Include="..\DuiLib\UIString.h" />
+    <ClInclude Include="..\DuiLib\UIWindow.h" />
+    <ClInclude Include="..\DuiLib\UIActiveX.h" />
+    <ClInclude Include="..\DuiLib\UIBase.h" />
+    <ClInclude Include="..\DuiLib\UICombo.h" />
+    <ClInclude Include="..\DuiLib\UICommonControls.h" />
+    <ClInclude Include="..\DuiLib\UIContainer.h" />
+    <ClInclude Include="..\DuiLib\UIControl.h" />
+    <ClInclude Include="..\DuiLib\UIDelegate.h" />
+    <ClInclude Include="..\DuiLib\UIDlgBuilder.h" />
+    <ClInclude Include="..\DuiLib\UIlib.h" />
+    <ClInclude Include="..\DuiLib\UIList.h" />
+    <ClInclude Include="..\DuiLib\UIRender.h" />
+    <ClInclude Include="..\DuiLib\UIRichEdit.h" />
+    <ClInclude Include="..\LuaObj\LuaBind.h" />
+    <ClInclude Include="..\LuaObj\LuaCommon.h" />
+    <ClInclude Include="..\LuaObj\LuaEngine.h" />
+    <ClInclude Include="..\LuaObj\LuaException.h" />
+    <ClInclude Include="..\LuaObj\LuaFunction.h" />
+    <ClInclude Include="..\LuaObj\Luaobj.h" />
+    <ClInclude Include="..\LuaObj\LuaObject.h" />
+    <ClInclude Include="..\LuaObj\LuaObjectImpl.h" />
+    <ClInclude Include="..\LuaObj\LuaStack.h" />
+    <ClInclude Include="..\LuaObj\LuaState.h" />
+    <ClInclude Include="..\LuaObj\LuaStateOwner.h" />
+    <ClInclude Include="..\LuaObj\LuaTable.h" />
+    <ClInclude Include="..\LuaObj\malloc\dlmalloc.h" />
+    <ClInclude Include="..\LuaObj\MemPool.h" />
+    <ClInclude Include="..\LuaObj\Utf.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\DuiLib\lwindow.cpp" />
+    <ClCompile Include="..\DuiLib\Markup.cpp" />
+    <ClCompile Include="..\DuiLib\UIApplication.cpp" />
+    <ClCompile Include="..\DuiLib\UIWindow.cpp" />
+    <ClCompile Include="..\DuiLib\stb_image.c" />
+    <ClCompile Include="..\DuiLib\UIActiveX.cpp" />
+    <ClCompile Include="..\DuiLib\UIBase.cpp" />
+    <ClCompile Include="..\DuiLib\UICombo.cpp" />
+    <ClCompile Include="..\DuiLib\UICommonControls.cpp" />
+    <ClCompile Include="..\DuiLib\UIContainer.cpp" />
+    <ClCompile Include="..\DuiLib\UIControl.cpp" />
+    <ClCompile Include="..\DuiLib\UIDelegate.cpp" />
+    <ClCompile Include="..\DuiLib\UIDlgBuilder.cpp" />
+    <ClCompile Include="..\DuiLib\UIlib.cpp" />
+    <ClCompile Include="..\DuiLib\UIList.cpp" />
+    <ClCompile Include="..\DuiLib\UIManager.cpp" />
+    <ClCompile Include="..\DuiLib\UIRender.cpp" />
+    <ClCompile Include="..\DuiLib\UIRichEdit.cpp" />
+    <ClCompile Include="..\DuiLib\XUnzip.cpp" />
+    <ClCompile Include="..\LuaObj\LuaBind.cpp" />
+    <ClCompile Include="..\LuaObj\LuaEngine.cpp" />
+    <ClCompile Include="..\LuaObj\LuaFunction.cpp" />
+    <ClCompile Include="..\LuaObj\LuaObject.cpp" />
+    <ClCompile Include="..\LuaObj\LuaObjectImpl.cpp" />
+    <ClCompile Include="..\LuaObj\LuaState.cpp" />
+    <ClCompile Include="..\LuaObj\LuaStateOwner.cpp" />
+    <ClCompile Include="..\LuaObj\LuaTable.cpp" />
+    <ClCompile Include="..\LuaObj\malloc\dlmalloc.c" />
+    <ClCompile Include="..\LuaObj\Utf.cpp" />
+    <ClCompile Include="lapplication.cpp" />
+    <ClCompile Include="lcontrol.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LuaDui.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
