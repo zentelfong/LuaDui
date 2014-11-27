@@ -23,7 +23,6 @@ public:
 
     CMarkup* GetMarkup();
 
-    void GetLastErrorMessage(LPTSTR pstrMessage, SIZE_T cchMax) const;
 	const char* GetLastError() const{return m_xml.GetLastError();}
 private:
     CControlUI* _Parse(XmlNode* parent, CControlUI* pParent = NULL, CPaintManagerUI* pManager = NULL);

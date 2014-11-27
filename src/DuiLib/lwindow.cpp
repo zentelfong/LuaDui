@@ -46,6 +46,13 @@ LBIND_DEFINE_FUNC(CWindowUI,ResizeClient)
 LBIND_END_DEFINE_FUNC
 
 
+LBIND_DEFINE_FUNC(CWindowUI,FindControl)
+	CControlUI* ctl=bindPtr->FindControl(CStdString(arg[2].toString()));
+	return L.lreturn(ctl->_lbindCToLua(&L));
+LBIND_END_DEFINE_FUNC
+
+
+
 }
 
 LBIND_BEGIN_DEFINE_LIB(CWindowUI)
@@ -54,6 +61,7 @@ LBIND_BEGIN_DEFINE_LIB(CWindowUI)
 	{"close",lbind::Close},
 	{"centerWindow",lbind::CenterWindow},
 	{"resizeClient",lbind::ResizeClient},
+	{"findControl",lbind::FindControl},
 LBIND_END_DEFINE_LIB
 
 

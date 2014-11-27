@@ -18,7 +18,6 @@ public:
     CControlUI();
     virtual ~CControlUI();
 
-
 	//lua
 	bool DoLuaEvent(const char* evName);
 	bool DoLuaEvent(const char* evName,LuaObject param);//调用lua处理事件

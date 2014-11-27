@@ -235,10 +235,6 @@ CMarkup* CDialogBuilder::GetMarkup()
     return &m_xml;
 }
 
-void CDialogBuilder::GetLastErrorMessage(LPTSTR pstrMessage, SIZE_T cchMax) const
-{
-    //return m_xml.GetLastErrorMessage(pstrMessage, cchMax);
-}
 
 
 CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent, CPaintManagerUI* pManager)
