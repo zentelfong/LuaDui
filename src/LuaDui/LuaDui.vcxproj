@@ -95,6 +95,7 @@
     <ClInclude Include="..\DuiLib\UIList.h" />
     <ClInclude Include="..\DuiLib\UIRender.h" />
     <ClInclude Include="..\DuiLib\UIRichEdit.h" />
+    <ClInclude Include="..\log\log4z.h" />
     <ClInclude Include="..\LuaObj\LuaBind.h" />
     <ClInclude Include="..\LuaObj\LuaCommon.h" />
     <ClInclude Include="..\LuaObj\LuaEngine.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="..\LuaObj\malloc\dlmalloc.h" />
     <ClInclude Include="..\LuaObj\MemPool.h" />
     <ClInclude Include="..\LuaObj\Utf.h" />
+    <ClInclude Include="lutil.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -134,6 +136,7 @@
     <ClCompile Include="..\DuiLib\UIRender.cpp" />
     <ClCompile Include="..\DuiLib\UIRichEdit.cpp" />
     <ClCompile Include="..\DuiLib\XUnzip.cpp" />
+    <ClCompile Include="..\log\log4z.cpp" />
     <ClCompile Include="..\LuaObj\LuaBind.cpp" />
     <ClCompile Include="..\LuaObj\LuaEngine.cpp" />
     <ClCompile Include="..\LuaObj\LuaFunction.cpp" />
@@ -146,6 +149,7 @@
     <ClCompile Include="..\LuaObj\Utf.cpp" />
     <ClCompile Include="lapplication.cpp" />
     <ClCompile Include="lcontrol.cpp" />
+    <ClCompile Include="lutil.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

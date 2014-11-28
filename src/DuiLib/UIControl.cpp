@@ -16,7 +16,7 @@ bool CControlUI::DoLuaEvent(const char* evName)
 			{
 				LuaFunction func=evData;
 				try{
-					LuaObject rtn=func();
+					LuaObject rtn=func(_lbindCToLua(LuaManager::instance()->current()));
 					return rtn.toBool();
 				}
 				catch(LuaException err)
@@ -54,7 +54,7 @@ bool CControlUI::DoLuaEvent(const char* evName,LuaObject param)
 			{
 				LuaFunction func=evData;
 				try{
-					LuaObject rtn=func(param);
+					LuaObject rtn=func(_lbindCToLua(LuaManager::instance()->current()),param);
 					return rtn.toBool();
 				}
 				catch(LuaException err)

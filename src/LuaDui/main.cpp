@@ -1,6 +1,6 @@
 
 #include "stdafx.h"
-
+using namespace zsummer::log4z;
 
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
@@ -10,6 +10,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+
+	ILog4zManager::GetInstance()->Start();
+
+
 	AllocConsole();
 	freopen("CONIN$","r",stdin);
 	freopen("CONOUT$","w",stdout);

@@ -9,57 +9,57 @@ LBIND_END_DEFINE_FUNC
 
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetInstance)
-	return L.lreturn(((lua_Integer)bindPtr->GetInstance()));
+	return L.lreturn(((lua_Integer)pThis->GetInstance()));
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetInstancePath)
-	return L.lreturn(bindPtr->GetInstancePath());
+	return L.lreturn(pThis->GetInstancePath());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetCurrentPath)
-	return L.lreturn(bindPtr->GetCurrentPath());
+	return L.lreturn(pThis->GetCurrentPath());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetResourcePath)
-	return L.lreturn(bindPtr->GetResourcePath());
+	return L.lreturn(pThis->GetResourcePath());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetResourceZip)
-	return L.lreturn(bindPtr->GetResourceZip());
+	return L.lreturn(pThis->GetResourceZip());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,IsCachedResourceZip)
-	return L.lreturn(bindPtr->IsCachedResourceZip());
+	return L.lreturn(pThis->IsCachedResourceZip());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,SetCurrentPath)
-	bindPtr->SetCurrentPath(CStdString(arg[2].toString()));
+	pThis->SetCurrentPath(CStdString(arg[2].toString()));
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,SetResourcePath)
-	bindPtr->SetResourcePath(CStdString(arg[2].toString()));
+	pThis->SetResourcePath(CStdString(arg[2].toString()));
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,SetResourceZip)
-	bindPtr->SetResourceZip(CStdString(arg[2].toString()));
+	pThis->SetResourceZip(CStdString(arg[2].toString()));
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetHSL)
 	short h,s,l;
-	bindPtr->GetHSL(&h,&s,&l);
+	pThis->GetHSL(&h,&s,&l);
 	return L.lreturn(h,s,l);
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,SetHSL)
-	bindPtr->SetHSL(arg[2].toBool(),arg[3].toInt(),arg[4].toInt(),arg[5].toInt());
+	pThis->SetHSL(arg[2].toBool(),arg[3].toInt(),arg[4].toInt(),arg[5].toInt());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,ReloadSkin)
-	bindPtr->ReloadSkin();
+	pThis->ReloadSkin();
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,LoadPlugin)
-	bindPtr->LoadPlugin(CStdString(arg[2].toString()));
+	pThis->LoadPlugin(CStdString(arg[2].toString()));
 LBIND_END_DEFINE_FUNC
 }
 

@@ -30,24 +30,24 @@ LBIND_END_DEFINE_FUNC
 
 
 LBIND_DEFINE_FUNC(CWindowUI,ShowWindow)
-	bindPtr->ShowWindow(arg[2].toBool(),arg[3].toBool());
+	pThis->ShowWindow(arg[2].toBool(),arg[3].toBool());
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CWindowUI,Close)
-	bindPtr->Close();
+	pThis->Close();
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CWindowUI,CenterWindow)
-	bindPtr->CenterWindow();
+	pThis->CenterWindow();
 LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CWindowUI,ResizeClient)
-	bindPtr->ResizeClient(arg[2].toInt(),arg[3].toInt());
+	pThis->ResizeClient(arg[2].toInt(),arg[3].toInt());
 LBIND_END_DEFINE_FUNC
 
 
 LBIND_DEFINE_FUNC(CWindowUI,FindControl)
-	CControlUI* ctl=bindPtr->FindControl(CStdString(arg[2].toString()));
+	CControlUI* ctl=pThis->FindControl(CStdString(arg[2].toString()));
 	return L.lreturn(ctl->_lbindCToLua(&L));
 LBIND_END_DEFINE_FUNC
 

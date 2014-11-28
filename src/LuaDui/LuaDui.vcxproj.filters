@@ -25,6 +25,9 @@
     <Filter Include="luabind">
       <UniqueIdentifier>{8ce64895-e85f-480c-ba0b-d139ac2d808d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{938af4a4-2be8-4544-9256-a058ef00b480}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -138,6 +141,12 @@
     <ClInclude Include="..\DuiLib\Markup.h">
       <Filter>duilib</Filter>
     </ClInclude>
+    <ClInclude Include="..\log\log4z.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="lutil.h">
+      <Filter>luabind</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -238,6 +247,12 @@
     </ClCompile>
     <ClCompile Include="..\DuiLib\Markup.cpp">
       <Filter>duilib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\log\log4z.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="lutil.cpp">
+      <Filter>luabind</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
