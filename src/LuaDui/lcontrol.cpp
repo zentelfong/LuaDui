@@ -6,6 +6,17 @@ using namespace DuiLib;
 namespace lbind
 {
 
+LBIND_DEFINE_FUNC(CControlUI,GetWindow)
+	CWindowUI* wnd=pThis->GetManager()->GetWindow();
+	if(wnd)
+		return L.lreturn(wnd->_lbindCToLua(&L));
+LBIND_END_DEFINE_FUNC
+
+LBIND_DEFINE_FUNC(CControlUI,GetWindowHandle)
+	HWND wnd=pThis->GetManager()->GetPaintWindow();
+	if(wnd)
+		return L.lreturn((LUA_INTEGER)wnd);
+LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CControlUI,GetPos)
 	RECT rc=pThis->GetPos();
@@ -339,6 +350,8 @@ LBIND_END_DEFINE_FUNC
 }
 
 LBIND_BEGIN_DEFINE_LIB(CControlUI)
+	{"window",lbind::GetWindow},
+	{"windowHandle",lbind::GetWindowHandle},
 	{"text",lbind::GetText},
 	{"setText",lbind::SetText},
 

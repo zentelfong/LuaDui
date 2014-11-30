@@ -29,6 +29,7 @@ class CScrollBarUI;
 class UILIB_API CContainerUI : public CControlUI, public IContainerUI
 {
 public:
+	LBIND_CLASS_DEFINE(CContainerUI,CControlUI);
     CContainerUI();
     virtual ~CContainerUI();
 
@@ -114,6 +115,7 @@ protected:
 class UILIB_API CVerticalLayoutUI : public CContainerUI
 {
 public:
+	LBIND_CLASS_DEFINE(CVerticalLayoutUI,CContainerUI);
     CVerticalLayoutUI();
 
     LPCTSTR GetClass() const;
@@ -147,6 +149,7 @@ protected:
 class UILIB_API CHorizontalLayoutUI : public CContainerUI
 {
 public:
+	LBIND_CLASS_DEFINE(CHorizontalLayoutUI,CContainerUI);
     CHorizontalLayoutUI();
 
     LPCTSTR GetClass() const;
@@ -180,6 +183,7 @@ protected:
 class UILIB_API CTileLayoutUI : public CContainerUI
 {
 public:
+	LBIND_CLASS_DEFINE(CTileLayoutUI,CContainerUI);
     CTileLayoutUI();
 
     LPCTSTR GetClass() const;
@@ -206,6 +210,8 @@ protected:
 class UILIB_API CTabLayoutUI : public CContainerUI
 {
 public:
+	LBIND_CLASS_DEFINE(CTabLayoutUI,CContainerUI);
+
     CTabLayoutUI();
 
     LPCTSTR GetClass() const;

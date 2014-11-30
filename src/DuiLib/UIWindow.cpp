@@ -211,7 +211,7 @@ LRESULT CWindowUI::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 	::SetWindowPos(*this, NULL, rcClient.left, rcClient.top, rcClient.right - rcClient.left, \
 		rcClient.bottom - rcClient.top, SWP_FRAMECHANGED);
 
-	paint_manager_.Init(m_hWnd);
+	paint_manager_.Init(this);
 
 	CDialogBuilder builder;
 

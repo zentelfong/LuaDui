@@ -14,6 +14,20 @@ namespace DuiLib
 		LBIND_REGISTER_CLASS(CApplicationUI,&m_lua);
 		LBIND_REGISTER_CLASS(CWindowUI,&m_lua);
 		LBIND_REGISTER_CLASS(CControlUI,&m_lua);
+		LBIND_REGISTER_CLASS(CLabelUI,&m_lua);
+		LBIND_REGISTER_CLASS(CButtonUI,&m_lua);
+		LBIND_REGISTER_CLASS(COptionUI,&m_lua);
+		LBIND_REGISTER_CLASS(CTextUI,&m_lua);
+		LBIND_REGISTER_CLASS(CProgressUI,&m_lua);
+		LBIND_REGISTER_CLASS(CSliderUI,&m_lua);
+		LBIND_REGISTER_CLASS(CEditUI,&m_lua);
+		LBIND_REGISTER_CLASS(CScrollBarUI,&m_lua);
+
+		LBIND_REGISTER_CLASS(CContainerUI,&m_lua);
+		LBIND_REGISTER_CLASS(CVerticalLayoutUI,&m_lua);
+		LBIND_REGISTER_CLASS(CHorizontalLayoutUI,&m_lua);
+		LBIND_REGISTER_CLASS(CTileLayoutUI,&m_lua);
+		LBIND_REGISTER_CLASS(CTabLayoutUI,&m_lua);
 	}
 
 	CApplicationUI::~CApplicationUI()

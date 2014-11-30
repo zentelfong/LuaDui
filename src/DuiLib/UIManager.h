@@ -8,7 +8,7 @@ namespace DuiLib {
 //
 
 class CControlUI;
-
+class CWindowUI;
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
@@ -170,6 +170,8 @@ public:
 
 public:
     void Init(HWND hWnd);
+	void Init(CWindowUI* wnd);
+
     void NeedUpdate();
     void Invalidate(RECT& rcItem);
 
@@ -318,6 +320,7 @@ public:
     bool MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
     bool PreMessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
 
+	CWindowUI* GetWindow();
 private:
     static CControlUI* CALLBACK __FindControlFromNameHash(CControlUI* pThis, LPVOID pData);
     static CControlUI* CALLBACK __FindControlFromCount(CControlUI* pThis, LPVOID pData);
@@ -330,6 +333,7 @@ private:
     static CControlUI* CALLBACK __FindControlsFromClass(CControlUI* pThis, LPVOID pData);
 
 private:
+	CWindowUI* m_window;
     HWND m_hWndPaint;
     HDC m_hDcPaint;
     HDC m_hDcOffscreen;

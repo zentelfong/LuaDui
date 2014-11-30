@@ -33,6 +33,18 @@ LBIND_DEFINE_FUNC(CWindowUI,ShowWindow)
 	pThis->ShowWindow(arg[2].toBool(),arg[3].toBool());
 LBIND_END_DEFINE_FUNC
 
+LBIND_DEFINE_FUNC(CWindowUI,ShowMin)
+	::ShowWindow(pThis->GetHWND(),SW_MINIMIZE);
+LBIND_END_DEFINE_FUNC
+
+LBIND_DEFINE_FUNC(CWindowUI,ShowMax)
+	::ShowWindow(pThis->GetHWND(),SW_MAXIMIZE);
+LBIND_END_DEFINE_FUNC
+
+LBIND_DEFINE_FUNC(CWindowUI,ShowRestore)
+	::ShowWindow(pThis->GetHWND(),SW_RESTORE);
+LBIND_END_DEFINE_FUNC
+
 LBIND_DEFINE_FUNC(CWindowUI,Close)
 	pThis->Close();
 LBIND_END_DEFINE_FUNC
@@ -58,6 +70,10 @@ LBIND_END_DEFINE_FUNC
 LBIND_BEGIN_DEFINE_LIB(CWindowUI)
 	{"create",lbind::Create},
 	{"showWindow",lbind::ShowWindow},
+	{"showMin",lbind::ShowMin},
+	{"showMax",lbind::ShowMax},
+	{"showRestore",lbind::ShowRestore},
+
 	{"close",lbind::Close},
 	{"centerWindow",lbind::CenterWindow},
 	{"resizeClient",lbind::ResizeClient},

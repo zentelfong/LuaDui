@@ -284,6 +284,7 @@ void CButtonUI::DoEvent(TEventUI& event)
     {
         if( IsContextMenuUsed() ) {
             m_pManager->SendNotify(this, _T("menu"), event.wParam, event.lParam);
+			DoLuaEvent("menu");
         }
         return;
     }
@@ -601,10 +602,12 @@ void COptionUI::Selected(bool bSelected)
                     }
                 }
                 m_pManager->SendNotify(this, _T("selectchanged"));
+				DoLuaEvent("selectChanged",m_bSelected);
             }
         }
         else {
             m_pManager->SendNotify(this, _T("selectchanged"));
+			DoLuaEvent("selectChanged",m_bSelected);
         }
     }
 
@@ -800,6 +803,7 @@ void CTextUI::DoEvent(TEventUI& event)
         for( int i = 0; i < m_nLinks; i++ ) {
             if( ::PtInRect(&m_rcLinks[i], event.ptMouse) ) {
                 m_pManager->SendNotify(this, _T("link"), i);
+				DoLuaEvent("link",i);
                 return;
             }
         }
@@ -1141,6 +1145,7 @@ void CSliderUI::DoEvent(TEventUI& event)
             else m_nValue = m_nMin + (m_nMax - m_nMin) * (m_rcItem.bottom - event.ptMouse.y - m_szThumb.cy / 2 ) / (m_rcItem.bottom - m_rcItem.top - m_szThumb.cy);
         }
         m_pManager->SendNotify(this, _T("valuechanged"));
+		DoLuaEvent("valueChanged",GetValue());
         Invalidate();
         return;
     }
@@ -1154,10 +1159,12 @@ void CSliderUI::DoEvent(TEventUI& event)
         case SB_LINEUP:
             SetValue(GetValue() + GetChangeStep());
             m_pManager->SendNotify(this, _T("valuechanged"));
+			DoLuaEvent("valueChanged",GetValue());
             return;
         case SB_LINEDOWN:
             SetValue(GetValue() - GetChangeStep());
             m_pManager->SendNotify(this, _T("valuechanged"));
+			DoLuaEvent("valueChanged",GetValue());
             return;
         }
     }
@@ -1358,6 +1365,7 @@ LRESULT CEditWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
     else if( uMsg == WM_KEYDOWN && TCHAR(wParam) == VK_RETURN ) {
         m_pOwner->GetManager()->SendNotify(m_pOwner, _T("return"));
+		m_pOwner->DoLuaEvent("return");
     }
     else if( uMsg == OCM__BASE + WM_CTLCOLOREDIT  || uMsg == OCM__BASE + WM_CTLCOLORSTATIC ) {
         if( m_pOwner->GetNativeEditBkColor() == 0xFFFFFFFF ) return NULL;
@@ -1394,6 +1402,7 @@ LRESULT CEditWnd::OnEditChanged(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lPara
     ::GetWindowText(m_hWnd, pstr, cchLen);
     m_pOwner->m_sText = pstr;
     m_pOwner->GetManager()->SendNotify(m_pOwner, _T("textchanged"));
+	m_pOwner->DoLuaEvent("textChanged");
     return 0;
 }
 
@@ -2351,7 +2360,11 @@ void CScrollBarUI::DoEvent(TEventUI& event)
                 }
             }
         }
-        if( m_pManager != NULL && m_pOwner == NULL ) m_pManager->SendNotify(this, _T("scroll"));
+        if( m_pManager != NULL && m_pOwner == NULL )
+		{
+			m_pManager->SendNotify(this, _T("scroll"));
+			DoLuaEvent("scroll");
+		}
         return;
     }
     if( event.Type == UIEVENT_BUTTONUP )
@@ -2471,7 +2484,11 @@ void CScrollBarUI::DoEvent(TEventUI& event)
                 }
             }
         }
-        if( m_pManager != NULL && m_pOwner == NULL ) m_pManager->SendNotify(this, _T("scroll"));
+        if( m_pManager != NULL && m_pOwner == NULL )
+		{
+			m_pManager->SendNotify(this, _T("scroll"));
+			DoLuaEvent("scroll");
+		}
         return;
     }
     if( event.Type == UIEVENT_MOUSEENTER )

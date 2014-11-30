@@ -7,6 +7,12 @@ LBIND_DEFINE_STATIC_FUNC(CApplicationUI,SharedInstance)
 	return L.lreturn(CApplicationUI::SharedInstance()->_lbindCToLua(&L));
 LBIND_END_DEFINE_FUNC
 
+LBIND_DEFINE_STATIC_FUNC(CApplicationUI,Quit)
+	if (arg.count()>1)
+		PostQuitMessage(arg[2].toInt());
+	else
+		PostQuitMessage(arg[1].toInt());
+LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CApplicationUI,GetInstance)
 	return L.lreturn(((lua_Integer)pThis->GetInstance()));
@@ -61,9 +67,12 @@ LBIND_END_DEFINE_FUNC
 LBIND_DEFINE_FUNC(CApplicationUI,LoadPlugin)
 	pThis->LoadPlugin(CStdString(arg[2].toString()));
 LBIND_END_DEFINE_FUNC
+
+
 }
 
 LBIND_BEGIN_DEFINE_LIB(CApplicationUI)
+{"quit",lbind::Quit},
 {"sharedInstance",lbind::SharedInstance},
 {"getInstance",lbind::GetInstance},
 {"instancePath",lbind::GetInstancePath},

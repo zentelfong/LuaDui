@@ -114,7 +114,16 @@ bool CControlUI::DoLuaEvent(const char* evName,const wchar_t* param)
 	return false;
 }
 
-
+bool CControlUI::DoLuaEvent(const char* evName,bool param)
+{
+	LuaEngine* L=LuaManager::instance()->current();
+	if (L)
+	{
+		LOGI("DoLuaEvent:"<<evName);
+		return DoLuaEvent(evName,L->newBool(param));
+	}
+	return false;
+}
 
 void CControlUI::BindLuaEvent(const char* evName,LuaObject func)
 {

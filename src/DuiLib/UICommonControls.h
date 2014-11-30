@@ -10,6 +10,8 @@ namespace DuiLib {
 class UILIB_API CLabelUI : public CControlUI
 {
 public:
+	LBIND_CLASS_DEFINE(CLabelUI,CControlUI);
+
     CLabelUI();
 
     LPCTSTR GetClass() const;
@@ -49,6 +51,8 @@ protected:
 class UILIB_API CButtonUI : public CLabelUI
 {
 public:
+	LBIND_CLASS_DEFINE(CButtonUI,CLabelUI);
+
     CButtonUI();
 
     LPCTSTR GetClass() const;
@@ -103,6 +107,8 @@ protected:
 class UILIB_API COptionUI : public CButtonUI
 {
 public:
+	LBIND_CLASS_DEFINE(COptionUI,CButtonUI);
+
     COptionUI();
     ~COptionUI();
 
@@ -151,6 +157,8 @@ protected:
 class UILIB_API CTextUI : public CLabelUI
 {
 public:
+	LBIND_CLASS_DEFINE(CTextUI,CLabelUI);
+
     CTextUI();
     ~CTextUI();
 
@@ -180,6 +188,7 @@ protected:
 class UILIB_API CProgressUI : public CLabelUI
 {
 public:
+	LBIND_CLASS_DEFINE(CProgressUI,CLabelUI);
     CProgressUI();
 
     LPCTSTR GetClass() const;
@@ -216,6 +225,7 @@ protected:
 class UILIB_API CSliderUI : public CProgressUI
 {
 public:
+	LBIND_CLASS_DEFINE(CSliderUI,CProgressUI);
     CSliderUI();
 
     LPCTSTR GetClass() const;
@@ -260,6 +270,7 @@ class UILIB_API CEditUI : public CLabelUI
 {
     friend CEditWnd;
 public:
+	LBIND_CLASS_DEFINE(CEditUI,CLabelUI);
     CEditUI();
 
     LPCTSTR GetClass() const;
@@ -319,6 +330,7 @@ protected:
 class UILIB_API CScrollBarUI : public CControlUI
 {
 public:
+	LBIND_CLASS_DEFINE(CScrollBarUI,CControlUI);
     CScrollBarUI();
 
     LPCTSTR GetClass() const;

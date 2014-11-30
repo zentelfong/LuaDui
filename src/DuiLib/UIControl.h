@@ -24,7 +24,7 @@ public:
 	bool DoLuaEvent(const char* evName,lua_Integer param);//调用lua处理事件
 	bool DoLuaEvent(const char* evName,const char* param);//调用lua处理事件
 	bool DoLuaEvent(const char* evName,const wchar_t* param);//调用lua处理事件
-	
+	bool DoLuaEvent(const char* evName,bool param);//调用lua处理事件
 	//绑定控件事件
 	void BindLuaEvent(const char* evName,LuaObject func);//绑定event配置的事件函数
 	void BindLuaEvent(const char* evName,const char* luaSrc);//绑定lua脚本进行处理

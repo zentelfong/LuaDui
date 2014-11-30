@@ -66,6 +66,7 @@ CStdPtrArray CPaintManagerUI::m_aPlugins;
 
 
 CPaintManagerUI::CPaintManagerUI() :
+m_window(NULL),
 m_hWndPaint(NULL),
 m_hDcPaint(NULL),
 m_hDcOffscreen(NULL),
@@ -159,6 +160,12 @@ CPaintManagerUI::~CPaintManagerUI()
 }
 
 
+CWindowUI* CPaintManagerUI::GetWindow()
+{
+	return m_window;
+}
+
+
 LuaObject CPaintManagerUI::GetControlEventMap(CControlUI* ctl,bool bCreate)
 {
 	LuaEngine* luaVm=LuaManager::instance()->current();
@@ -192,6 +199,14 @@ void CPaintManagerUI::Init(HWND hWnd)
     // We'll want to filter messages globally too
     m_aPreMessages.Add(this);
 }
+
+void CPaintManagerUI::Init(CWindowUI* wnd)
+{
+	ASSERT(wnd);
+	m_window=wnd;
+	Init(m_window->GetHWND());
+}
+
 
 HINSTANCE CPaintManagerUI::GetInstance()
 {
@@ -533,6 +548,7 @@ bool CPaintManagerUI::PreMessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam,
     return false;
 }
 
+
 bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes)
 {
 //#ifdef _DEBUG
@@ -600,7 +616,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
 
             // Hmmph, the usual Windows tricks to avoid
             // focus loss...
-            HWND hwndParent = GetWindowOwner(m_hWndPaint);
+            HWND hwndParent = ::GetWindowOwner(m_hWndPaint);
             if( hwndParent != NULL ) ::SetFocus(hwndParent);
         }
         break;
@@ -1095,6 +1111,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
         {
             if( LOWORD(lParam) != HTCLIENT ) break;
             if( m_bMouseCapture ) return true;
+			if( !m_pRoot ) break;
 
             POINT pt = { 0 };
             ::GetCursorPos(&pt);
