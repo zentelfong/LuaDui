@@ -213,9 +213,9 @@ LRESULT CWindowUI::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 
 	paint_manager_.Init(this);
 
-	CDialogBuilder builder;
+	CDialogBuilder builder(&paint_manager_);
 
-	CControlUI* pRoot = builder.Create(skin_xml_.GetString(), (UINT)0, this, &paint_manager_);
+	CControlUI* pRoot = builder.Create(skin_xml_.GetString(), (UINT)0, this);
 	if(pRoot)
 		paint_manager_.AttachDialog(pRoot);
 	else
@@ -273,6 +273,11 @@ LRESULT CWindowUI::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
 }
 
+
+CPaintManagerUI* CWindowUI::GetManager()
+{
+	return &paint_manager_;
+}
 
 
 

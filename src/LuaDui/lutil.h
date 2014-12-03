@@ -1,5 +1,6 @@
 #include "LuaObj/Luaobj.h"
 
+
 namespace lbind
 {
 
@@ -10,6 +11,4 @@ namespace lbind
 	RECT toRect(LuaTable obj);
 	SIZE toSize(LuaTable obj);
 	POINT toPoint(LuaTable obj);
-
-
 }

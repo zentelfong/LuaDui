@@ -28,6 +28,8 @@ namespace DuiLib
 		LBIND_REGISTER_CLASS(CHorizontalLayoutUI,&m_lua);
 		LBIND_REGISTER_CLASS(CTileLayoutUI,&m_lua);
 		LBIND_REGISTER_CLASS(CTabLayoutUI,&m_lua);
+		LBIND_REGISTER_CLASS(CComboUI,&m_lua);
+
 	}
 
 	CApplicationUI::~CApplicationUI()

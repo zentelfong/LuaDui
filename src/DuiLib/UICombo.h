@@ -13,6 +13,7 @@ class UILIB_API CComboUI : public CContainerUI, public IListOwnerUI
 {
     friend CComboWnd;
 public:
+	LBIND_CLASS_DEFINE(CComboUI,CContainerUI);
     CComboUI();
 
     LPCTSTR GetClass() const;

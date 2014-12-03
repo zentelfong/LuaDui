@@ -159,6 +159,16 @@ CPaintManagerUI::~CPaintManagerUI()
 		luaVm->setRegistry(this,luaVm->newNil());
 }
 
+bool CPaintManagerUI::CheckAvalible()
+{
+	LuaEngine* luaVm=LuaManager::instance()->current();
+	if (luaVm)
+	{
+		LuaTable tab=luaVm->getRegistery(this);
+		return tab.isValid();
+	}
+	return false;
+}
 
 CWindowUI* CPaintManagerUI::GetWindow()
 {

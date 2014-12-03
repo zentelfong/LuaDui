@@ -167,7 +167,7 @@ public:
 
 	//获取Control绑定的事件表，如果存在直接返回，否则判断bCreate决定是否创建
 	LuaObject GetControlEventMap(CControlUI* ctl,bool bCreate);
-
+	bool CheckAvalible();
 public:
     void Init(HWND hWnd);
 	void Init(CWindowUI* wnd);

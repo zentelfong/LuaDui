@@ -63,7 +63,11 @@ LBIND_DEFINE_FUNC(CWindowUI,FindControl)
 	return L.lreturn(ctl->_lbindCToLua(&L));
 LBIND_END_DEFINE_FUNC
 
-
+//´´½¨builder
+LBIND_DEFINE_FUNC(CWindowUI,CreateBuilder)
+	CDialogBuilder* builder=new CDialogBuilder(pThis->GetManager());
+	return L.lreturn(builder->_lbindCToLua(&L));
+LBIND_END_DEFINE_FUNC
 
 }
 
@@ -78,6 +82,7 @@ LBIND_BEGIN_DEFINE_LIB(CWindowUI)
 	{"centerWindow",lbind::CenterWindow},
 	{"resizeClient",lbind::ResizeClient},
 	{"findControl",lbind::FindControl},
+	{"createBuilder",lbind::CreateBuilder},
 LBIND_END_DEFINE_LIB
 
 

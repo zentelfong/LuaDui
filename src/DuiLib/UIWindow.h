@@ -68,8 +68,7 @@ namespace DuiLib
 		void SetSkinXml(LPCTSTR xml){if(xml)skin_xml_=xml;}
 
 		CControlUI* FindControl(LPCTSTR name){return paint_manager_.FindControl(name);}
-	protected:
-
+		CPaintManagerUI* GetManager();
 
 	protected:
 		CPaintManagerUI paint_manager_;

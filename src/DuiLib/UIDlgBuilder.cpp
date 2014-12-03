@@ -2,13 +2,28 @@
 #include <string.h>
 namespace DuiLib {
 
-CDialogBuilder::CDialogBuilder() : m_pCallback(NULL), m_pstrtype(NULL)
+CDialogBuilder::CDialogBuilder(CPaintManagerUI* mgr) : m_pCallback(NULL), m_pstrtype(NULL),m_pMgr(mgr)
 {
 
 }
 
-CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback, 
-                                   CPaintManagerUI* pManager, CControlUI* pParent)
+bool CDialogBuilder::LoadFile(LPCTSTR file)
+{
+	return m_xml.LoadFromFile(file);
+}
+
+
+bool CDialogBuilder::LoadString(LPCWSTR strXml)
+{
+    return m_xml.Load(strXml);
+}
+
+bool CDialogBuilder::LoadString(LPCSTR strXml)
+{
+    return m_xml.LoadFromMem((BYTE*)strXml,strlen(strXml)+1,XMLFILE_ENCODING_UTF8);
+}
+
+CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback,  CControlUI* pParent)
 {
     if( HIWORD(xml.m_lpstr) != NULL ) {
         if( *(xml.m_lpstr) == _T('<') ) {
@@ -28,20 +43,24 @@ CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderC
         }
 
         m_pCallback = pCallback;
-        if( !m_xml.LoadFromMem((BYTE*)::LockResource(hGlobal), ::SizeofResource(CPaintManagerUI::GetResourceDll(), hResource) )) return NULL;
+        if( !m_xml.LoadFromMem((BYTE*)::LockResource(hGlobal), ::SizeofResource(CPaintManagerUI::GetResourceDll(), hResource) )) 
+		{
+			::FreeResource(hResource);
+			return NULL;
+		}
         ::FreeResource(hResource);
         m_pstrtype = type;
     }
 
-    return Create(pCallback, pManager, pParent);
+    return Create(pCallback, pParent);
 }
 
-CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback, CPaintManagerUI* pManager, CControlUI* pParent)
+CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback,CControlUI* pParent)
 {
     m_pCallback = pCallback;
     XmlNode *root = m_xml.GetRoot();
     if( !root ) return NULL;
-
+	CPaintManagerUI* pManager=m_pMgr;
     if( pManager ) {
         LPCTSTR pstrClass = NULL;
         int nAttributes = 0;
@@ -227,7 +246,7 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback, CPaintMana
             }
         }
     }
-    return _Parse(root, pParent, pManager);
+    return _Parse(root, pParent);
 }
 
 CMarkup* CDialogBuilder::GetMarkup()
@@ -237,11 +256,11 @@ CMarkup* CDialogBuilder::GetMarkup()
 
 
 
-CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent, CPaintManagerUI* pManager)
+CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent)
 {
     IContainerUI* pContainer = NULL;
     CControlUI* pReturn = NULL;
-
+	CPaintManagerUI* pManager=m_pMgr;
     for( XmlNode* node = pRoot->first_node() ; node; node = node->next_sibling() ) 
 	{
         LPCTSTR pstrClass = node->name();
@@ -262,13 +281,13 @@ CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent, CPaintMa
             if ( !attr ) continue;
             for ( int i = 0; i < count; i++ ) 
 			{
-                CDialogBuilder builder;
+                CDialogBuilder builder(m_pMgr);
                 if( m_pstrtype != NULL ) { // 使用资源dll，从资源中读取
                     WORD id = (WORD)_tcstol(attr->value(), &pstr, 10); 
-                    pControl = builder.Create((UINT)id, m_pstrtype, m_pCallback, pManager, pParent);
+                    pControl = builder.Create((UINT)id, m_pstrtype, m_pCallback, pParent);
                 }
                 else {
-                    pControl = builder.Create((LPCTSTR)attr->value(), (UINT)0, m_pCallback, pManager, pParent);
+                    pControl = builder.Create((LPCTSTR)attr->value(), (UINT)0, m_pCallback, pParent);
                 }
             }
             continue;
@@ -396,7 +415,7 @@ CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent, CPaintMa
 
 			}
 			else
-				_Parse(node, pControl, pManager);
+				_Parse(node, pControl);
         }
         // Attach to parent
         // 因为某些属性和父窗口相关，比如selected，必须先Add到父窗口

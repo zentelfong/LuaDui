@@ -265,6 +265,7 @@ void CMarkup::Release()
 {
 	if( m_pstrXML != NULL ) free(m_pstrXML);
 	m_pstrXML=NULL;
+	m_parser.clear();
 }
 
 const char* CMarkup::GetLastError() const
