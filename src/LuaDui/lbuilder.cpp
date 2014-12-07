@@ -64,6 +64,12 @@ LBIND_DEFINE_FUNC(CDialogBuilder,BuildControl)
 LBIND_END_DEFINE_FUNC
 
 
+LBIND_DEFINE_FUNC(CDialogBuilder,Delete)
+	typedef CDialogBuilder* data_t;
+	delete pThis;
+	data_t* builder=(data_t*)arg[1].toData();
+	*builder=NULL;
+LBIND_END_DEFINE_FUNC
 
 }
 
@@ -73,5 +79,5 @@ LBIND_BEGIN_DEFINE_LIB(CDialogBuilder)
 	{"loadFile",lbind::LoadFile},
 	{"loadString",lbind::LoadString},
 	{"buildControl",lbind::BuildControl},
-
+	{"__gc",lbind::Delete},
 LBIND_END_DEFINE_LIB

@@ -39,9 +39,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -54,12 +56,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -81,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="..\DuiLib\Markup.h" />
     <ClInclude Include="..\DuiLib\UIApplication.h" />
+    <ClInclude Include="..\DuiLib\UIManager.h" />
     <ClInclude Include="..\DuiLib\UIString.h" />
     <ClInclude Include="..\DuiLib\UIWindow.h" />
     <ClInclude Include="..\DuiLib\UIActiveX.h" />
@@ -148,6 +152,10 @@
     <ClCompile Include="..\LuaObj\malloc\dlmalloc.c" />
     <ClCompile Include="..\LuaObj\Utf.cpp" />
     <ClCompile Include="lapplication.cpp" />
+    <ClCompile Include="lbuilder.cpp" />
+    <ClCompile Include="lcombo.cpp" />
+    <ClCompile Include="lcommoncontrols.cpp" />
+    <ClCompile Include="lcontainer.cpp" />
     <ClCompile Include="lcontrol.cpp" />
     <ClCompile Include="lutil.cpp" />
     <ClCompile Include="main.cpp" />

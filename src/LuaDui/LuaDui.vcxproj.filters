@@ -147,6 +147,9 @@
     <ClInclude Include="lutil.h">
       <Filter>luabind</Filter>
     </ClInclude>
+    <ClInclude Include="..\DuiLib\UIManager.h">
+      <Filter>duilib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -252,6 +255,18 @@
       <Filter>log</Filter>
     </ClCompile>
     <ClCompile Include="lutil.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="lcommoncontrols.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="lcontainer.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="lcombo.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="lbuilder.cpp">
       <Filter>luabind</Filter>
     </ClCompile>
   </ItemGroup>
