@@ -1,3 +1,5 @@
+require ("debug.mobdebug").start()
+
 local debug=require ("DebugUI")
 
 local app=UI.CApplicationUI.sharedInstance()

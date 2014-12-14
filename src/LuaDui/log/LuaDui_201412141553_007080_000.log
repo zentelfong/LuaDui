@@ -1,7 +1,0 @@
-2014-12-14 15:53:11.266 LOG_ALARM -----------------  log4z thread started!   ---------------------------- 
-2014-12-14 15:53:11.268 LOG_ALARM logger id=0 path=./log/ name=LuaDui level=1 display=1 
-2014-12-14 15:53:11.308 LOG_INFO  DoLuaEvent:setFocus ( d:\uilib\luadui\duilib\uicontrol.cpp ) : 10 
-2014-12-14 15:53:13.590 LOG_INFO  DoLuaEvent:killFocus ( d:\uilib\luadui\duilib\uicontrol.cpp ) : 10 
-2014-12-14 15:53:13.590 LOG_INFO  DoLuaEvent:setFocus ( d:\uilib\luadui\duilib\uicontrol.cpp ) : 10 
-2014-12-14 15:53:13.727 LOG_INFO  DoLuaEvent:click ( d:\uilib\luadui\duilib\uicontrol.cpp ) : 10 
-2014-12-14 15:53:13.734 LOG_INFO  DoLuaEvent:killFocus ( d:\uilib\luadui\duilib\uicontrol.cpp ) : 10 
