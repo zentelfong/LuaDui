@@ -10,3 +10,5 @@ LuaDui库使用luajit2.0脚本引擎，高效稳定快捷。
 LuaDui使用rapidxml替换了duilib自带的xml解析器，提高了创建控件时xml解析效率。
 
 LuaDui使用C++库LuaObj导出duilib接口到lua环境中方便快捷，你也可以根据需求导出你的特定接口给lua环境。
+
+LuaDui提供可供输入以及接受lua脚本进行运行的调试界面，使得开发调试更便捷。
