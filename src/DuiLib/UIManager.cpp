@@ -2147,14 +2147,20 @@ CControlUI* CPaintManagerUI::GetRoot() const
 
 CControlUI* CPaintManagerUI::FindControl(POINT pt) const
 {
-    ASSERT(m_pRoot);
-    return m_pRoot->FindControl(__FindControlFromPoint, &pt, UIFIND_VISIBLE | UIFIND_HITTEST | UIFIND_TOP_FIRST);
+    //ASSERT(m_pRoot);
+	if(m_pRoot)
+		return m_pRoot->FindControl(__FindControlFromPoint, &pt, UIFIND_VISIBLE | UIFIND_HITTEST | UIFIND_TOP_FIRST);
+	else
+		return NULL;
 }
 
 CControlUI* CPaintManagerUI::FindControl(LPCTSTR pstrName) const
 {
-    ASSERT(m_pRoot);
-    return static_cast<CControlUI*>(m_mNameHash.Find(pstrName));
+    //ASSERT(m_pRoot);
+	if(m_pRoot)
+		return static_cast<CControlUI*>(m_mNameHash.Find(pstrName));
+	else
+		return NULL;
 }
 
 CControlUI* CPaintManagerUI::FindSubControlByPoint(CControlUI* pParent, POINT pt) const

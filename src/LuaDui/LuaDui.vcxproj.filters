@@ -269,6 +269,9 @@
     <ClCompile Include="lbuilder.cpp">
       <Filter>luabind</Filter>
     </ClCompile>
+    <ClCompile Include="lrichedit.cpp">
+      <Filter>luabind</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LuaDui.rc">

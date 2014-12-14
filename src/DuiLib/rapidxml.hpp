@@ -1429,7 +1429,10 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
-                return internal::lookup_tables<0>::lookup_whitespace[static_cast<unsigned char>(ch)];
+				if(ch<=255)
+					return internal::lookup_tables<0>::lookup_whitespace[static_cast<unsigned char>(ch)];
+				else
+					return 0;
             }
         };
 
@@ -1438,7 +1441,10 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
-                return internal::lookup_tables<0>::lookup_node_name[static_cast<unsigned char>(ch)];
+				if(ch<=255)
+					return internal::lookup_tables<0>::lookup_node_name[static_cast<unsigned char>(ch)];
+				else
+					return 1;
             }
         };
 
@@ -1447,7 +1453,10 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
-                return internal::lookup_tables<0>::lookup_attribute_name[static_cast<unsigned char>(ch)];
+				if(ch<=255)
+					return internal::lookup_tables<0>::lookup_attribute_name[static_cast<unsigned char>(ch)];
+				else
+					return 1;
             }
         };
 
@@ -1456,7 +1465,10 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
-                return internal::lookup_tables<0>::lookup_text[static_cast<unsigned char>(ch)];
+				if(ch<=255)
+					return internal::lookup_tables<0>::lookup_text[static_cast<unsigned char>(ch)];
+				else
+					return 1;
             }
         };
 
@@ -1465,7 +1477,10 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
-                return internal::lookup_tables<0>::lookup_text_pure_no_ws[static_cast<unsigned char>(ch)];
+				if(ch<=255)
+					return internal::lookup_tables<0>::lookup_text_pure_no_ws[static_cast<unsigned char>(ch)];
+				else
+					return 1;
             }
         };
 
@@ -1474,7 +1489,10 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
-                return internal::lookup_tables<0>::lookup_text_pure_with_ws[static_cast<unsigned char>(ch)];
+				if(ch<=255)
+					return internal::lookup_tables<0>::lookup_text_pure_with_ws[static_cast<unsigned char>(ch)];
+				else
+					return 1;
             }
         };
 
@@ -1484,10 +1502,17 @@ namespace rapidxml
         {
             static unsigned char test(Ch ch)
             {
+
                 if (Quote == Ch('\''))
-                    return internal::lookup_tables<0>::lookup_attribute_data_1[static_cast<unsigned char>(ch)];
+					if(ch<=255)
+						return internal::lookup_tables<0>::lookup_attribute_data_1[static_cast<unsigned char>(ch)];
+					else
+						return 1;
                 if (Quote == Ch('\"'))
-                    return internal::lookup_tables<0>::lookup_attribute_data_2[static_cast<unsigned char>(ch)];
+					if(ch<=255)
+						return internal::lookup_tables<0>::lookup_attribute_data_2[static_cast<unsigned char>(ch)];
+					else
+						return 1;
                 return 0;       // Should never be executed, to avoid warnings on Comeau
             }
         };
@@ -1499,9 +1524,15 @@ namespace rapidxml
             static unsigned char test(Ch ch)
             {
                 if (Quote == Ch('\''))
-                    return internal::lookup_tables<0>::lookup_attribute_data_1_pure[static_cast<unsigned char>(ch)];
+					if(ch<=255)
+						return internal::lookup_tables<0>::lookup_attribute_data_1_pure[static_cast<unsigned char>(ch)];
+					else
+						return 1;
                 if (Quote == Ch('\"'))
-                    return internal::lookup_tables<0>::lookup_attribute_data_2_pure[static_cast<unsigned char>(ch)];
+					if(ch<=255)
+						return internal::lookup_tables<0>::lookup_attribute_data_2_pure[static_cast<unsigned char>(ch)];
+					else
+						return 1;
                 return 0;       // Should never be executed, to avoid warnings on Comeau
             }
         };
@@ -2268,7 +2299,7 @@ namespace rapidxml
 
                 // Skip quote and remember if it was ' or "
                 Ch quote = *text;
-                if (quote != Ch('\'') && quote != Ch('"'))
+                if (quote != Ch('\'') && quote != Ch('\"'))
                     RAPIDXML_PARSE_ERROR("expected ' or \"", text);
                 ++text;
 
@@ -2278,7 +2309,7 @@ namespace rapidxml
                 if (quote == Ch('\''))
                     end = skip_and_expand_character_refs<attribute_value_pred<Ch('\'')>, attribute_value_pure_pred<Ch('\'')>, AttFlags>(text);
                 else
-                    end = skip_and_expand_character_refs<attribute_value_pred<Ch('"')>, attribute_value_pure_pred<Ch('"')>, AttFlags>(text);
+                    end = skip_and_expand_character_refs<attribute_value_pred<Ch('\"')>, attribute_value_pure_pred<Ch('\"')>, AttFlags>(text);
                 
                 // Set attribute value
                 attribute->value(value, end - value);

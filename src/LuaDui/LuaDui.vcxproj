@@ -157,6 +157,7 @@
     <ClCompile Include="lcommoncontrols.cpp" />
     <ClCompile Include="lcontainer.cpp" />
     <ClCompile Include="lcontrol.cpp" />
+    <ClCompile Include="lrichedit.cpp" />
     <ClCompile Include="lutil.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">

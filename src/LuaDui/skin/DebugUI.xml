@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Window caption="0,0,0,30" sizebox="5,5,5,5" mininfo="480,360" defaultfontcolor="#ff010000" width="600" height="480">
+<Font name="微软雅黑" size="12" bold="false"/>
+
+<VerticalLayout bkcolor="#ff019bd0" inset="1,1,1,1" bordersize="1" bordercolor="#FF010000">
+    <HorizontalLayout height="30" inset="5,0,0,0">
+		<Label name="标题" text="调试窗口" textcolor="#FFFFFFFF"></Label>
+		<Control />
+        <Button name="minbtn" width="40" height="22" text="最小化" bkcolor="#ff3fd536">
+		<Event click="DebugUIEvent.minBtnClick" />
+		</Button>
+        <Button name="closebtn" width="47" height="22" text="关闭" bkcolor="#ffef2f4d">
+		<Event click="DebugUIEvent.closeBtnClick" />
+		</Button>
+    </HorizontalLayout>
+
+	<VerticalLayout  bkcolor="#ffffffff">
+	<RichEdit name="textOutPut" extend="false" padding="1,1,1,1" rich="false" readonly="true" font="0" vscrollbar="true"/>
+	
+	<HorizontalLayout height="26" childpadding="10" inset="0,2,0,2" bkcolor="#ff019bd0">
+	<Button name="runBtn" text="运行" width="76" height="22" bkcolor="#ff25dfe2">
+	<Event click="DebugUIEvent.run"/>
+	</Button>
+	
+	<Button name="clearBtn" text="清空" width="76" height="22" bkcolor="#ff25dfe2">
+	<Event click="DebugUIEvent.clear"/>
+	</Button>	
+	</HorizontalLayout>
+	
+	<RichEdit name="input" extend="false" height="120" padding="1,1,1,0" rich="false" readonly="false" font="0" vscrollbar="true" autovscroll="true"/>
+	</VerticalLayout>
+</VerticalLayout>
+</Window>

@@ -220,6 +220,7 @@ LRESULT CWindowUI::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 		paint_manager_.AttachDialog(pRoot);
 	else
 	{
+		ASSERT(FALSE);
 		LOGE("faild to parser xml error:"<<builder.GetLastError());
 	}
 	Init();

@@ -73,6 +73,8 @@ bool CMarkup::_Parse()
 	catch(rapidxml::parse_error err)
 	{
 		m_error=err.what();
+		LPCTSTR swhere=err.where<TCHAR>();
+
 		m_isValid=false;
 	}
 	return m_isValid;

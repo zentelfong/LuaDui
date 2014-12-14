@@ -79,5 +79,6 @@ LBIND_BEGIN_DEFINE_LIB(CDialogBuilder)
 	{"loadFile",lbind::LoadFile},
 	{"loadString",lbind::LoadString},
 	{"buildControl",lbind::BuildControl},
+	{"delete",lbind::Delete},
 	{"__gc",lbind::Delete},
 LBIND_END_DEFINE_LIB
