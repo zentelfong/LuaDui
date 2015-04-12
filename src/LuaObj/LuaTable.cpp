@@ -60,7 +60,10 @@ bool LuaTable::setTable(const char* key,LuaObject val)
 	{
 		lua_State* L=m_ptr->getLuaState();
 		lua_pushstring(L,key);//key
-		lua_pushvalue(L,val.getIndex());//value
+		if(val.isNone())
+			lua_pushnil(L);
+		else
+			lua_pushvalue(L,val.getIndex());//value
 		lua_settable(L,getIndex());
 		return true;
 	}
@@ -73,7 +76,10 @@ bool LuaTable::setTable(lua_Integer key,LuaObject val)
 	{
 		lua_State* L=m_ptr->getLuaState();
 		lua_pushinteger(L,key);//key
-		lua_pushvalue(L,val.getIndex());//value
+		if(val.isNone())
+			lua_pushnil(L);
+		else
+			lua_pushvalue(L,val.getIndex());//value
 		lua_settable(L,getIndex());
 		return true;
 	}
