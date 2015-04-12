@@ -1,6 +1,6 @@
 #pragma once
-#include "rapidxml.hpp"
-#include <string>
+#include "xml/pugixml.hpp"
+#include "UIString.h"
 
 namespace DuiLib
 {
@@ -11,9 +11,9 @@ namespace DuiLib
 		XMLFILE_ENCODING_ASNI = 2,
 	};
 
-	typedef rapidxml::xml_document<TCHAR> XmlDoc;
-	typedef rapidxml::xml_node<TCHAR> XmlNode;
-	typedef rapidxml::xml_attribute<TCHAR> XmlAttr;
+	typedef pugi::xml_document XmlDoc;
+	typedef pugi::xml_node XmlNode;
+	typedef pugi::xml_attribute XmlAttr;
 
 
 	class CMarkup
@@ -26,20 +26,17 @@ namespace DuiLib
 		bool LoadFromMem(BYTE* pByte, DWORD dwSize, int encoding = XMLFILE_ENCODING_UTF8);
 		bool LoadFromFile(LPCTSTR pstrFilename, int encoding = XMLFILE_ENCODING_UTF8);
 		void Release();
-		const char* GetLastError() const;
-
-		XmlNode* GetRoot();
+		
+		XmlNode GetRoot();
 
 		bool IsValid() const;
-
-		
+		LPCTSTR GetLastError() const;
 	private:
 		bool _Parse();
 		bool _Failed(const char* pstrError);
-		bool m_isValid;
 		LPTSTR m_pstrXML;
 		XmlDoc m_parser;
-		std::string m_error;
+		CStdString m_error;
 	};
 
 }

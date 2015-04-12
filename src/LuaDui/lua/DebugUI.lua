@@ -19,7 +19,7 @@ end
 function println(text,...)
 	if _window then
 		local edit= _window:findControl("textOutPut")
-		edit:appendText(string.wformat(text,...))
+		edit:appendText(string.format(text,...))
 		edit:appendText("\n")
 	end
 end

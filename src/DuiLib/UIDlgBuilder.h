@@ -28,11 +28,11 @@ public:
 
     CMarkup* GetMarkup();
 
-	const char* GetLastError() const{return m_xml.GetLastError();}
+	LPCTSTR GetLastError() const{return m_xml.GetLastError();}
 
 	CPaintManagerUI* GetManager(){return m_pMgr;}
 private:
-    CControlUI* _Parse(XmlNode* parent, CControlUI* pParent = NULL);
+    CControlUI* _Parse(XmlNode parent, CControlUI* pParent = NULL);
 	CPaintManagerUI* m_pMgr;
     CMarkup m_xml;
     IDialogBuilderCallback* m_pCallback;

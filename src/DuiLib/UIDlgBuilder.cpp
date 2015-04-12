@@ -1,5 +1,6 @@
 #include "StdAfx.h"
-#include <string.h>
+
+
 namespace DuiLib {
 
 CDialogBuilder::CDialogBuilder(CPaintManagerUI* mgr) : m_pCallback(NULL), m_pstrtype(NULL),m_pMgr(mgr)
@@ -58,7 +59,7 @@ CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderC
 CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback,CControlUI* pParent)
 {
     m_pCallback = pCallback;
-    XmlNode *root = m_xml.GetRoot();
+    XmlNode root = m_xml.GetRoot().first_child();
     if( !root ) return NULL;
 	CPaintManagerUI* pManager=m_pMgr;
     if( pManager ) {
@@ -68,18 +69,18 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback,CControlUI*
         LPCTSTR pstrValue = NULL;
         LPTSTR pstr = NULL;
 
-        for( XmlNode* node = root->first_node() ; node; node = node->next_sibling() ) 
+        for( pugi::xml_node node = root.first_child(); node; node =node.next_sibling()) 
 		{
-            pstrClass = node->name();
+            pstrClass = node.name();
             if( _tcscmp(pstrClass, _T("Image")) == 0 ) 
 			{
                 LPCTSTR pImageName = NULL;
                 LPCTSTR pImageResType = NULL;
                 DWORD mask = 0;
-                for(XmlAttr *attr=node->first_attribute();attr;attr=attr->next_attribute()) 
+                for(XmlAttr attr=node.first_attribute();attr;attr=attr.next_attribute()) 
 				{
-                    pstrName = attr->name();
-                    pstrValue = attr->value();
+                    pstrName = attr.name();
+                    pstrValue = attr.value();
                     if( _tcscmp(pstrName, _T("name")) == 0 ) {
                         pImageName = pstrValue;
                     }
@@ -101,10 +102,10 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback,CControlUI*
                 bool underline = false;
                 bool italic = false;
                 bool defaultfont = false;
-                for(XmlAttr *attr=node->first_attribute();attr;attr=attr->next_attribute() )
+                for(XmlAttr attr=node.first_attribute();attr;attr=attr.next_attribute())
 				{
-                    pstrName = attr->name();
-                    pstrValue = attr->value();
+                    pstrName = attr.name();
+                    pstrValue = attr.value();
                     if( _tcscmp(pstrName, _T("name")) == 0 ) {
                         pFontName = pstrValue;
                     }
@@ -133,10 +134,10 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback,CControlUI*
 			{
                 LPCTSTR pControlName = NULL;
                 LPCTSTR pControlValue = NULL;
-                for(XmlAttr *attr=node->first_attribute();attr;attr=attr->next_attribute() ) 
+                for(XmlAttr attr=node.first_attribute();attr;attr=attr.next_attribute()) 
 				{
-                    pstrName = attr->name();
-                    pstrValue = attr->value();
+                    pstrName = attr.name();
+                    pstrValue = attr.value();
                     if( _tcscmp(pstrName, _T("name")) == 0 ) {
                         pControlName = pstrValue;
                     }
@@ -150,17 +151,17 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback,CControlUI*
             }
         }
 
-        pstrClass = root->name();
+        pstrClass = root.name();
         if( _tcscmp(pstrClass, _T("Window")) == 0 ) 
 		{
             if( pManager->GetPaintWindow() ) 
 			{
 				LPCTSTR pControlName = NULL;
 				LPCTSTR pControlValue = NULL;
-				for(XmlAttr *attr=root->first_attribute();attr;attr=attr->next_attribute() ) 
+				for(XmlAttr attr=root.first_attribute();attr;attr=attr.next_attribute()) 
 				{
-                    pstrName = attr->name();
-                    pstrValue = attr->value();
+                    pstrName = attr.name();
+                    pstrValue = attr.value();
                     if( _tcscmp(pstrName, _T("size")) == 0 ) {
                         LPTSTR pstr = NULL;
                         int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
@@ -256,38 +257,38 @@ CMarkup* CDialogBuilder::GetMarkup()
 
 
 
-CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent)
+CControlUI* CDialogBuilder::_Parse(XmlNode pRoot, CControlUI* pParent)
 {
     IContainerUI* pContainer = NULL;
     CControlUI* pReturn = NULL;
 	CPaintManagerUI* pManager=m_pMgr;
-    for( XmlNode* node = pRoot->first_node() ; node; node = node->next_sibling() ) 
+    for( XmlNode node = pRoot.first_child() ; node; node = node.next_sibling() ) 
 	{
-        LPCTSTR pstrClass = node->name();
+        LPCTSTR pstrClass = node.name();
         if( _tcscmp(pstrClass, _T("Image")) == 0 || _tcscmp(pstrClass, _T("Font")) == 0 \
             || _tcscmp(pstrClass, _T("Default")) == 0 ) continue;
 
         CControlUI* pControl = NULL;
         if( _tcscmp(pstrClass, _T("Include")) == 0 ) 
 		{
-            if( !node->first_attribute() ) continue;
+            if( !node.first_attribute() ) continue;
             int count = 1;
             LPTSTR pstr = NULL;
-			XmlAttr* attr=node->first_attribute(_T("count"));
+			XmlAttr attr=node.attribute(_T("count"));
             if ( attr)
-                count = _tcstol(attr->value(), &pstr, 10);
+                count = _tcstol(attr.value(), &pstr, 10);
 
-			attr=node->first_attribute(_T("source"));
+			attr=node.attribute(_T("source"));
             if ( !attr ) continue;
             for ( int i = 0; i < count; i++ ) 
 			{
                 CDialogBuilder builder(m_pMgr);
                 if( m_pstrtype != NULL ) { // 使用资源dll，从资源中读取
-                    WORD id = (WORD)_tcstol(attr->value(), &pstr, 10); 
+                    WORD id = (WORD)_tcstol(attr.value(), &pstr, 10); 
                     pControl = builder.Create((UINT)id, m_pstrtype, m_pCallback, pParent);
                 }
                 else {
-                    pControl = builder.Create((LPCTSTR)attr->value(), (UINT)0, m_pCallback, pParent);
+                    pControl = builder.Create((LPCTSTR)attr.value(), (UINT)0, m_pCallback, pParent);
                 }
             }
             continue;
@@ -363,11 +364,11 @@ CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent)
 
 
         // Add children
-		XmlNode* child=node->first_node();
+		XmlNode child=node.first_child();
 
         if( child ) 
 		{
-			if (_tcscmp(child->name(), _T("Event")) == 0)
+			if (_tcscmp(child.name(), _T("Event")) == 0)
 			{
 				//<Event setFocus="ClickEvent.click">
 				//	<click>print("按钮点击")</click>
@@ -379,10 +380,10 @@ CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent)
 				LuaEngine* L=LuaManager::instance()->current();
 				if(L)
 				{
-					for (XmlAttr* attr=child->first_attribute();attr;attr=attr->next_attribute())
+					for (XmlAttr attr=child.first_attribute();attr;attr=attr.next_attribute())
 					{
-						UTF16To8(nameBuf,(unsigned short*)attr->name(),sizeof(nameBuf));
-						UTF16To8(valueBuf,(unsigned short*)attr->value(),sizeof(valueBuf));
+						UTF16To8(nameBuf,(unsigned short*)attr.name(),sizeof(nameBuf));
+						UTF16To8(valueBuf,(unsigned short*)attr.value(),sizeof(valueBuf));
 						
 						char* val="";
 						for (int i=strlen(valueBuf)-1;i>=0;--i)
@@ -402,13 +403,10 @@ CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent)
 						
 					}
 
-					for( XmlNode* evNode = child->first_node() ; evNode; evNode = evNode->next_sibling() )
+					for( XmlNode evNode = child.first_child() ; evNode; evNode = evNode.next_sibling() )
 					{
-						UTF16To8(nameBuf,(unsigned short*)evNode->name(),sizeof(nameBuf));
-						if(evNode->value()[0]==_T('\0'))
-							UTF16To8(valueBuf,(unsigned short*)evNode->first_node()->value(),sizeof(valueBuf));
-						else
-							UTF16To8(valueBuf,(unsigned short*)evNode->value(),sizeof(valueBuf));
+						UTF16To8(nameBuf,(unsigned short*)evNode.name(),sizeof(nameBuf));
+						UTF16To8(valueBuf,(unsigned short*)evNode.text().as_string(),sizeof(valueBuf));
 						pControl->BindLuaEvent(nameBuf,valueBuf);
 					}
 				}
@@ -437,9 +435,9 @@ CControlUI* CDialogBuilder::_Parse(XmlNode* pRoot, CControlUI* pParent)
             }
         }
         // Process attributes
-        if( node->first_attribute() ) {
-            for(XmlAttr* attr=node->first_attribute();attr;attr=attr->next_attribute() ) {
-                pControl->SetAttribute(attr->name(),attr->value());
+        if( node.first_attribute() ) {
+            for(XmlAttr attr=node.first_attribute();attr;attr=attr.next_attribute() ) {
+                pControl->SetAttribute(attr.name(),attr.value());
             }
         }
         if( pManager ) {

@@ -97,10 +97,10 @@ public:\
 #define LBIND_DEFINE_FUNC(Class,Func)\
 	int Func(LuaState& L,LuaTable &arg)\
 {\
-	Class* bindPtr=Class::_lbindLuaToC(arg[1]);\
-	if(!bindPtr)\
+	Class* pThis=Class::_lbindLuaToC(arg[1]);\
+	if(!pThis)\
 	{\
-		L.error("lbind arg0 is not a object,file %s,line %d",__FILE__,__LINE__);\
+		L.error("lbind arg1 is not a object,file %s,line %d",__FILE__,__LINE__);\
 		return 0;\
 	}
 

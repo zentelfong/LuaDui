@@ -50,7 +50,7 @@ namespace DuiLib
 
 
 CMarkup::CMarkup(LPCTSTR pstrXML)
-	:m_isValid(false),m_pstrXML(NULL)
+	:m_pstrXML(NULL)
 {
 	if( pstrXML != NULL ) Load(pstrXML);
 }
@@ -65,19 +65,10 @@ bool CMarkup::_Parse()
 {
 	if (!m_pstrXML)
 		return false;
+    pugi::xml_parse_result result = m_parser.load_string(m_pstrXML);
 
-    m_isValid = true;
-	try{
-		m_parser.parse<0>(m_pstrXML);
-	}
-	catch(rapidxml::parse_error err)
-	{
-		m_error=err.what();
-		LPCTSTR swhere=err.where<TCHAR>();
-
-		m_isValid=false;
-	}
-	return m_isValid;
+	m_error = result.description();
+	return result.status == pugi::status_ok;
 }
 
 
@@ -267,25 +258,22 @@ void CMarkup::Release()
 {
 	if( m_pstrXML != NULL ) free(m_pstrXML);
 	m_pstrXML=NULL;
-	m_parser.clear();
+	m_parser.reset();
 }
 
-const char* CMarkup::GetLastError() const
+LPCTSTR CMarkup::GetLastError() const
 {
-	return m_error.c_str();
+	return m_error;
 }
 
 bool CMarkup::IsValid() const
 {
-	return m_isValid;
+	return m_parser.root();
 }
 
-XmlNode* CMarkup::GetRoot()
+XmlNode CMarkup::GetRoot()
 {
-	if (IsValid())
-		return m_parser.first_node();
-	else
-		return NULL;
+	return m_parser.root();
 }
 
 

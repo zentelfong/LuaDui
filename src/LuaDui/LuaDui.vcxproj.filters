@@ -28,6 +28,9 @@
     <Filter Include="log">
       <UniqueIdentifier>{938af4a4-2be8-4544-9256-a058ef00b480}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xml">
+      <UniqueIdentifier>{c8f1a765-595e-4136-8ea9-5b697e57d54a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -150,6 +153,12 @@
     <ClInclude Include="..\DuiLib\UIManager.h">
       <Filter>duilib</Filter>
     </ClInclude>
+    <ClInclude Include="..\xml\pugiconfig.hpp">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xml\pugixml.hpp">
+      <Filter>xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -271,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="lrichedit.cpp">
       <Filter>luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xml\pugixml.cpp">
+      <Filter>xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -115,6 +115,8 @@
     <ClInclude Include="..\LuaObj\malloc\dlmalloc.h" />
     <ClInclude Include="..\LuaObj\MemPool.h" />
     <ClInclude Include="..\LuaObj\Utf.h" />
+    <ClInclude Include="..\xml\pugiconfig.hpp" />
+    <ClInclude Include="..\xml\pugixml.hpp" />
     <ClInclude Include="lutil.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -151,6 +153,7 @@
     <ClCompile Include="..\LuaObj\LuaTable.cpp" />
     <ClCompile Include="..\LuaObj\malloc\dlmalloc.c" />
     <ClCompile Include="..\LuaObj\Utf.cpp" />
+    <ClCompile Include="..\xml\pugixml.cpp" />
     <ClCompile Include="lapplication.cpp" />
     <ClCompile Include="lbuilder.cpp" />
     <ClCompile Include="lcombo.cpp" />
