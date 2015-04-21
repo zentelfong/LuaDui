@@ -300,8 +300,19 @@ BOOL CTxtWinHost::Init(CRichEditUI *re, const CREATESTRUCT *pcs)
     fInplaceActive = TRUE;
 
     // Create Text Services component
-    if(FAILED(CreateTextServices(NULL, this, &pUnk)))
-        goto err;
+    //if(FAILED(CreateTextServices(NULL, this, &pUnk)))
+    //    goto err;
+	PCreateTextServices TextServicesProc = NULL;
+	HMODULE hmod = LoadLibrary(_T("msftedit.dll"));
+	if (hmod)
+	{
+		TextServicesProc = (PCreateTextServices)GetProcAddress(hmod,"CreateTextServices");
+	}
+
+	if (TextServicesProc)
+	{
+		HRESULT hr = TextServicesProc(NULL, this, &pUnk);
+	}
 
     hr = pUnk->QueryInterface(IID_ITextServices,(void **)&pserv);
 
