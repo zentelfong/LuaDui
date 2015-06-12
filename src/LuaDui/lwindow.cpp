@@ -60,7 +60,8 @@ LBIND_END_DEFINE_FUNC
 
 LBIND_DEFINE_FUNC(CWindowUI,FindControl)
 	CControlUI* ctl=pThis->FindControl(CStdString(arg[2].toString()));
-	return L.lreturn(ctl->_lbindCToLua(&L));
+	if(ctl)
+		return L.lreturn(ctl->_lbindCToLua(&L));
 LBIND_END_DEFINE_FUNC
 
 //´´½¨builder

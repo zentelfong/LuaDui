@@ -82,6 +82,8 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\base\Criticalsection.h" />
+    <ClInclude Include="..\base\RefBase.h" />
     <ClInclude Include="..\DuiLib\Markup.h" />
     <ClInclude Include="..\DuiLib\UIApplication.h" />
     <ClInclude Include="..\DuiLib\UIManager.h" />
@@ -123,7 +125,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\DuiLib\lwindow.cpp" />
+    <ClCompile Include="..\base\RefBase.cpp" />
     <ClCompile Include="..\DuiLib\Markup.cpp" />
     <ClCompile Include="..\DuiLib\UIApplication.cpp" />
     <ClCompile Include="..\DuiLib\UIWindow.cpp" />
@@ -162,6 +164,7 @@
     <ClCompile Include="lcontrol.cpp" />
     <ClCompile Include="lrichedit.cpp" />
     <ClCompile Include="lutil.cpp" />
+    <ClCompile Include="lwindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

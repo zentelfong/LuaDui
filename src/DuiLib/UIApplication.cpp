@@ -7,6 +7,7 @@ namespace DuiLib
 	CApplicationUI::CApplicationUI(HINSTANCE hins)
 	{
 		ASSERT(!s_application);
+		m_threadId=GetCurrentThreadId();
 		s_application=this;
 		CPaintManagerUI::SetInstance(hins);
 		m_lua.setGlobal("UI",m_lua.newTable());
@@ -41,8 +42,13 @@ namespace DuiLib
 	void CApplicationUI::MessageLoop()
 	{
 		MSG msg = { 0 };
-		while( ::GetMessage(&msg, NULL, 0, 0) ) {
-			if( !CPaintManagerUI::TranslateMessage(&msg) ) {
+		while( ::GetMessage(&msg, NULL, 0, 0) ) 
+		{
+			RefCountedPtr<IRunbaleUI> runable=GetRunable();
+			if (runable.get())
+				runable->Run(&m_lua);
+
+			if(msg.message!=WM_ACTIVATE_THREAD && !CPaintManagerUI::TranslateMessage(&msg) ) {
 				::TranslateMessage(&msg);
 				::DispatchMessage(&msg);
 			}
@@ -56,14 +62,24 @@ namespace DuiLib
 
 
 
+	void CApplicationUI::PostRunable(RefCountedPtr<IRunbaleUI> runable)
+	{
+		base::CritScope lock(&m_queueLock);
+		m_runableQueue.push(runable);
+		PostThreadMessage(m_threadId,WM_ACTIVATE_THREAD,0,0);
+	}
 
-
-
-
-
-
-
-
+	RefCountedPtr<IRunbaleUI> CApplicationUI::GetRunable()
+	{
+		RefCountedPtr<IRunbaleUI> runable;
+		base::CritScope lock(&m_queueLock);
+		if(!m_runableQueue.empty())
+		{
+			runable=m_runableQueue.front();
+			m_runableQueue.pop();
+		}
+		return runable;
+	}
 
 
 }

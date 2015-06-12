@@ -17,9 +17,31 @@ int LuaObjectImpl::callDelegate(lua_State* L)
 			lua_pushvalue(L,i);
 			lua_settable(L,args.getIndex());
 		}
-		nreturn=func(LS,args);
+		try{
+			nreturn=func(LS,args);
+		}
+		catch(LuaException e)
+		{
+			lua_pushstring(L,e.what());
+			return lua_error(L);
+		}
+		catch(std::exception& e)
+		{
+			lua_pushstring(L,e.what());
+			return lua_error(L);
+		}
+		catch(const char *s)
+		{
+			lua_pushstring(L,s);
+			return lua_error(L);
+		}
+		catch(...)
+		{
+			lua_pushliteral(L, "caught (...)");
+			return lua_error(L);
+		}
 	}
-	LS.enumStack();
+	//LS.enumStack();
 	return nreturn;
 }
 

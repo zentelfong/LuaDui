@@ -1,8 +1,21 @@
 #ifndef UIAPPLICATION_H
 #define UIAPPLICATION_H
 
+#include "base/RefBase.h"
+#include "base/Criticalsection.h"
+#include "queue"
+
 namespace DuiLib
 {
+
+#define WM_ACTIVATE_THREAD (WM_USER+0x122)
+
+class IRunbaleUI:public base::RefCountedBase
+{
+public:
+	virtual void Run(LuaState* L)=0;
+};
+
 
 class CApplicationUI
 {
@@ -37,10 +50,24 @@ public:
 	static CStdPtrArray* GetPlugins(){return CPaintManagerUI::GetPlugins();}
 
 	static CApplicationUI* SharedInstance(){return s_application;}
+
+	void PostRunable(RefCountedPtr<IRunbaleUI>);
 private:
+	RefCountedPtr<IRunbaleUI> GetRunable();
+
 	LuaEngine m_lua;
+	DWORD m_threadId;
+	std::queue<RefCountedPtr<IRunbaleUI>> m_runableQueue;
+	base::CriticalSection m_queueLock;
+
 	static CApplicationUI* s_application;
 };
+
+//如果其他线程需要调用界面线程的lua，则必须通过PostUIRunable调用，直接调用会导致崩溃
+inline void PostUIRunable(RefCountedPtr<IRunbaleUI> runable)
+{
+	CApplicationUI::SharedInstance()->PostRunable(runable);
+}
 
 }
 #endif

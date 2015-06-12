@@ -31,6 +31,9 @@
     <Filter Include="xml">
       <UniqueIdentifier>{c8f1a765-595e-4136-8ea9-5b697e57d54a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{1c9af272-1a15-4eef-8b6d-f9dab44ee1f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -159,6 +162,12 @@
     <ClInclude Include="..\xml\pugixml.hpp">
       <Filter>xml</Filter>
     </ClInclude>
+    <ClInclude Include="..\base\RefBase.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\Criticalsection.h">
+      <Filter>base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -239,9 +248,6 @@
     <ClCompile Include="..\DuiLib\UIWindow.cpp">
       <Filter>duilib</Filter>
     </ClCompile>
-    <ClCompile Include="..\DuiLib\lwindow.cpp">
-      <Filter>luabind</Filter>
-    </ClCompile>
     <ClCompile Include="..\DuiLib\UIApplication.cpp">
       <Filter>duilib</Filter>
     </ClCompile>
@@ -283,6 +289,12 @@
     </ClCompile>
     <ClCompile Include="..\xml\pugixml.cpp">
       <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\RefBase.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="lwindow.cpp">
+      <Filter>luabind</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
