@@ -5,6 +5,8 @@
 #include "base/Criticalsection.h"
 #include "queue"
 
+#define LUV_SUPPORT 1
+
 namespace DuiLib
 {
 
@@ -53,6 +55,10 @@ public:
 
 	void PostRunable(RefCountedPtr<IRunbaleUI>);
 private:
+
+#ifdef LUV_SUPPORT
+	static void CALLBACK LuvWorkTimerProc(HWND hWnd,UINT nMsg,UINT nTimerid,DWORD dwTime);
+#endif
 	RefCountedPtr<IRunbaleUI> GetRunable();
 
 	LuaEngine m_lua;

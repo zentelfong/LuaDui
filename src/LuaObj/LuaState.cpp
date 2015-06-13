@@ -153,6 +153,14 @@ LuaTable LuaState::newLib(const LuaReg funcs[])
 	return lib;
 }
 
+void LuaState::openLib(const char* name,lua_CFunction openfunc)
+{
+	int top=lua_gettop(m_ls);
+	openfunc(m_ls);
+	lua_setglobal(m_ls,name);
+	lua_settop(m_ls,top);
+}
+
 
 LuaObject LuaState::doFile(const char *fileName)
 {

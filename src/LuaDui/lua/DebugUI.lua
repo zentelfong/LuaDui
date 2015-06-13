@@ -51,4 +51,35 @@ function Debug.setTitle(title)
 	end	
 end
 
+
+function var_dump(data, max_level, prefix)
+    if type(prefix) ~= "string" then
+        prefix = ""
+    end
+    if type(data) ~= "table" then
+        println(prefix .. tostring(data))
+    else
+        println(tostring(data))
+        if max_level ~= 0 then
+            local prefix_next = prefix .. "    "
+            println(prefix .. "{")
+            for k,v in pairs(data) do
+                print(prefix_next .. k .. " = ")
+                if type(v) ~= "table" or (type(max_level) == "number" and max_level <= 1) then
+                    println(v)
+                else
+                    if max_level == nil then
+                        var_dump(v, nil, prefix_next)
+                    else
+                        var_dump(v, max_level - 1, prefix_next)
+                    end
+                end
+            end
+            println(prefix .. "}")
+        end
+    end
+end
+
+
+
 return Debug

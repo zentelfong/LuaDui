@@ -1,11 +1,27 @@
 #include "stdafx.h"
 #include "UIApplication.h"
+
+#ifdef LUV_SUPPORT
+#include "luv/luv.h"
+
+#pragma comment(lib,"ws2_32.lib")
+#pragma comment(lib, "IPHLPAPI.lib")  
+#pragma comment(lib, "Psapi.lib")  
+#pragma comment(lib, "Userenv.lib")  
+
+
+#endif
+
 namespace DuiLib
 {
 	CApplicationUI* CApplicationUI::s_application=NULL;
 
 	CApplicationUI::CApplicationUI(HINSTANCE hins)
 	{
+#ifdef LUV_SUPPORT
+		luaopen_luv(m_lua.getLuaState());
+		lua_setglobal(m_lua.getLuaState(),"uv");
+#endif
 		ASSERT(!s_application);
 		m_threadId=GetCurrentThreadId();
 		s_application=this;
@@ -39,8 +55,20 @@ namespace DuiLib
 		s_application=NULL;
 	}
 
+#ifdef LUV_SUPPORT
+	void CALLBACK CApplicationUI::LuvWorkTimerProc(HWND hWnd,UINT nMsg,UINT nTimerid,DWORD dwTime)  
+	{
+		if(s_application)
+			luv_do_loop_work(s_application->m_lua.getLuaState());
+	}
+#endif
+
+
 	void CApplicationUI::MessageLoop()
 	{
+#ifdef LUV_SUPPORT
+		SetTimer(NULL,0,10,LuvWorkTimerProc);
+#endif
 		MSG msg = { 0 };
 		while( ::GetMessage(&msg, NULL, 0, 0) ) 
 		{

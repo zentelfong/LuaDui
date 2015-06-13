@@ -47,6 +47,8 @@ public:
 	LuaObject newFunction(LuaCFunction);
 	LuaTable newLib(const LuaReg lib[]);
 	
+	void openLib(const char* name,lua_CFunction openfunc);
+
 	//do string
 	LuaObject  doFile(const char *fileName);
 	LuaObject  doString(const char *str);
