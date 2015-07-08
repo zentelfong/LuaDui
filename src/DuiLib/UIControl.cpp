@@ -28,7 +28,11 @@ bool CControlUI::DoLuaEvent(const char* evName)
 			else if(evData.isString())
 			{
 				try{
-					LuaManager::instance()->current()->doString(evData.toString());
+					LuaState* L=LuaManager::instance()->current();
+					LuaObject lthis=_lbindCToLua(L);
+					L->setGlobal("this",lthis);
+					const char* script=evData.toString();
+					L->doString(script);
 				}
 				catch(LuaException err)
 				{
@@ -66,7 +70,12 @@ bool CControlUI::DoLuaEvent(const char* evName,LuaObject param)
 			else if(evData.isString())
 			{
 				try{
-					LuaManager::instance()->current()->doString(evData.toString());
+					LuaState* L=LuaManager::instance()->current();
+					LuaObject lthis=_lbindCToLua(L);
+					L->setGlobal("this",lthis);
+					L->setGlobal("param",param);
+					const char* script=evData.toString();
+					L->doString(script);
 				}
 				catch(LuaException err)
 				{

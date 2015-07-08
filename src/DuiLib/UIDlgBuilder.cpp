@@ -406,8 +406,11 @@ CControlUI* CDialogBuilder::_Parse(XmlNode pRoot, CControlUI* pParent)
 					for( XmlNode evNode = child.first_child() ; evNode; evNode = evNode.next_sibling() )
 					{
 						UTF16To8(nameBuf,(unsigned short*)evNode.name(),sizeof(nameBuf));
-						UTF16To8(valueBuf,(unsigned short*)evNode.text().as_string(),sizeof(valueBuf));
-						pControl->BindLuaEvent(nameBuf,valueBuf);
+						int len=UTF16To8(NULL,(unsigned short*)evNode.text().as_string(),0);
+						char* buf=(char*)dlmalloc(len+1);
+						UTF16To8(buf,(unsigned short*)evNode.text().as_string(),len+1);
+						pControl->BindLuaEvent(nameBuf,buf);
+						dlfree(buf);
 					}
 				}
 

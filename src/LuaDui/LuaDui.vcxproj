@@ -80,7 +80,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="LuaDui.ico" />
-    <None Include="ReadMe.txt" />
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>

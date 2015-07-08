@@ -21,7 +21,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 
 	DuiLib::CApplicationUI app(hInstance);
-	app.GetLuaState()->require("main");
+	try{
+		app.GetLuaState()->require("main");
+	}
+	catch(LuaException e)
+	{
+		LOGE(e.what());
+	}
+	
 	app.MessageLoop();
 
 	FreeConsole();

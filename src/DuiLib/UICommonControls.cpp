@@ -674,7 +674,19 @@ SIZE COptionUI::EstimateSize(SIZE szAvailable)
 void COptionUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 {
     if( _tcscmp(pstrName, _T("group")) == 0 ) SetGroup(pstrValue);
-    else if( _tcscmp(pstrName, _T("selected")) == 0 ) Selected(_tcscmp(pstrValue, _T("true")) == 0);
+    else if( _tcscmp(pstrName, _T("selected")) == 0 ) 
+	{
+		if(_tcscmp(pstrValue, _T("true")) == 0)
+		{
+			m_bSelected=true;
+			m_uButtonState |= UISTATE_SELECTED;		
+		}
+		else
+		{
+			m_bSelected = false;
+			m_uButtonState &= ~UISTATE_SELECTED;
+		}
+	}
     else if( _tcscmp(pstrName, _T("selectedimage")) == 0 ) SetSelectedImage(pstrValue);
 	else if( _tcscmp(pstrName, _T("foreimage")) == 0 ) SetForeImage(pstrValue);
 	else if( _tcscmp(pstrName, _T("selectedtextcolor")) == 0 ) {

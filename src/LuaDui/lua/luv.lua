@@ -12,7 +12,7 @@ assert(uv.getaddrinfo(url, nil, {
 end))
 
 
---[[
+
 --tcpserver
 local server = uv.new_tcp()
 assert(uv.tcp_bind(server, "127.0.0.1", 1234))
@@ -20,8 +20,8 @@ assert(uv.listen(server, 1,function ()
   local client = uv.new_tcp()
   assert(uv.accept(server, client))
   assert(uv.read_start(client, function (err, data)
-	p("server read", {err=err,data=data})
-	assert(not err, err)
+	print("server read\n")
+	var_dump(data)
 	if data then
 	  assert(uv.write(client, data))
 	else
@@ -35,22 +35,22 @@ end))
 
 
 
---tcp
+--tcpclient
 local socket = assert(uv.new_tcp())
 assert(uv.tcp_connect(socket, "127.0.0.1", 1234, function ()
   assert(uv.read_start(socket, function (err, data)
-	var_dump({err=err,data=data})
+	print("client read\n")
+	var_dump(data)
 	assert(not err, err)
 	assert(uv.read_stop(socket))
 	uv.close(socket)
   end))
   
   local req = assert(uv.write(socket, "Hello", function (err)
-	p("client onwrite", socket, err)
 	assert(not err, err)
   end))
 end))
-]]
+
 
 
 
