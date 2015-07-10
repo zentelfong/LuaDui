@@ -7,7 +7,7 @@ bool CControlUI::DoLuaEvent(const char* evName)
 	ASSERT(evName);
 	if (GetManager())
 	{
-		LOGI("DoLuaEvent:"<<evName);
+		//LOGI("DoLuaEvent:"<<evName);
 		LuaTable tab=GetManager()->GetControlEventMap(this,false);
 		if (tab.isValid())
 		{
@@ -49,7 +49,7 @@ bool CControlUI::DoLuaEvent(const char* evName,LuaObject param)
 	ASSERT(evName);
 	if (GetManager())
 	{
-		LOGI("DoLuaEvent:"<<evName);
+		//LOGI("DoLuaEvent:"<<evName);
 		LuaTable tab=GetManager()->GetControlEventMap(this,false);
 		if (tab.isValid())
 		{
@@ -92,7 +92,7 @@ bool CControlUI::DoLuaEvent(const char* evName,lua_Integer param)
 	LuaEngine* L=LuaManager::instance()->current();
 	if (L)
 	{
-		LOGI("DoLuaEvent:"<<evName);
+		//LOGI("DoLuaEvent:"<<evName);
 		return DoLuaEvent(evName,L->newInt(param));
 	}
 	return false;
@@ -104,7 +104,7 @@ bool CControlUI::DoLuaEvent(const char* evName,const char* param)
 	LuaEngine* L=LuaManager::instance()->current();
 	if (L)
 	{
-		LOGI("DoLuaEvent:"<<evName);
+		//LOGI("DoLuaEvent:"<<evName);
 		return DoLuaEvent(evName,L->newString(param));
 	}
 
@@ -117,7 +117,7 @@ bool CControlUI::DoLuaEvent(const char* evName,const wchar_t* param)
 	LuaEngine* L=LuaManager::instance()->current();
 	if (L)
 	{
-		LOGI("DoLuaEvent:"<<evName);
+		//LOGI("DoLuaEvent:"<<evName);
 		return DoLuaEvent(evName,L->newString(param));
 	}
 	return false;
@@ -128,7 +128,7 @@ bool CControlUI::DoLuaEvent(const char* evName,bool param)
 	LuaEngine* L=LuaManager::instance()->current();
 	if (L)
 	{
-		LOGI("DoLuaEvent:"<<evName);
+		//LOGI("DoLuaEvent:"<<evName);
 		return DoLuaEvent(evName,L->newBool(param));
 	}
 	return false;

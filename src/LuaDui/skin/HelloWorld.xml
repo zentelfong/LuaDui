@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Window caption="0,0,0,30" size="600,480">
+
+<VerticalLayout bkcolor="#ff019bd0" inset="1,1,1,1" bordersize="1" bordercolor="#FF010000">
+    <HorizontalLayout height="30">
+		<Control/>
+        <Button name="closebtn" width="47" height="22" text="Close" bkcolor="#ffef2f4d">
+			<Event>
+				<click>
+					this:window():close()
+				</click>
+			</Event>
+		</Button>
+    </HorizontalLayout>
+	<Text text="Hello World!" align="center"/>
+</VerticalLayout>
+</Window>
