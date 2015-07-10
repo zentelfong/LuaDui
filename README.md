@@ -14,3 +14,31 @@ LuaDui使用C++库LuaObj导出duilib接口到lua环境中，你也可以根据�
 LuaDui提供可供输入以及接受lua脚本进行运行的调试界面，使得开发调试更便捷。
 
 LuaDui可以使用zbstudio编辑lua脚本，支持lua脚本高亮显示，支持LuaDui库接口自动补全功能，支持lua脚本的端点调试功能。
+
+HelloWorld
+======
+main.lua中
+
+local wnd=UI.CWindowUI.create({res="helloWorld.xml",name="HelloWorld"})
+wnd:centerWindow()
+wnd:showWindow(true,true)
+
+helloWorld.xml中
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Window caption="0,0,0,30" size="600,480">
+<VerticalLayout bkcolor="#ff019bd0" inset="1,1,1,1" bordersize="1" bordercolor="#FF010000">
+    <HorizontalLayout height="30">
+		<Control/>
+        <Button name="closebtn" width="47" height="22" text="Close" bkcolor="#ffef2f4d">
+			<Event>
+				<click>
+					this:window():close()
+				</click>
+			</Event>
+		</Button>
+    </HorizontalLayout>
+	<Text text="Hello World!" align="center"/>
+</VerticalLayout>
+</Window>
+
